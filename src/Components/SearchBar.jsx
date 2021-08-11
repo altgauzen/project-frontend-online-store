@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 
-export default class ProductList extends Component {
+export default class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,8 +14,12 @@ export default class ProductList extends Component {
     this.fetchProduct = this.fetchProduct.bind(this);
   }
 
-  componentDidMount() {
+  handleClick = ({ target }) => {
+    // const { categoryId } = this.state;
     this.fetchProduct();
+    this.setState({
+      category: target.id,
+    });
   }
 
   handleChange(event) {
@@ -29,14 +33,14 @@ export default class ProductList extends Component {
     const { category, searchText } = this.state;
     const fetchApi = await api.getProductsFromCategoryAndQuery(category, searchText);
     this.setState({
-      products: fetchApi,
+      products: fetchApi.results,
       done: true,
     });
   }
 
   render() {
-    const { products: { results }, searchText, done } = this.state;
-    console.log(results);
+    const { products, searchText, done } = this.state;
+    // console.log(results);
     // if (done) return 'Nenhum produto foi encontrado';
     return (
       <div>
@@ -53,20 +57,20 @@ export default class ProductList extends Component {
             <button
               type="button"
               data-testid="query-button"
-              onClick={ this.fetchProduct }
+              onClick={ this.handleClick }
             >
               Pesquisar
             </button>
           </label>
         </form>
         <div>
-          {done ? results.map(({ title, price, thumbnail, id }) => (
+          {done ? products.map(({ title, price, thumbnail, id }) => (
             <div key={ id } data-testid="product">
               <h3>{ title }</h3>
               <p>{ price }</p>
               <img src={ thumbnail } alt="foto" />
             </div>
-          )) : 'nada encontrado'}
+          )) : <p>Nenhum produto foi encontrado</p>}
         </div>
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
