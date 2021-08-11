@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
+import CardProduct from './CardProduct';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -64,13 +65,9 @@ export default class SearchBar extends Component {
           </label>
         </form>
         <div>
-          {done ? products.map(({ title, price, thumbnail, id }) => (
-            <div key={ id } data-testid="product">
-              <h3>{ title }</h3>
-              <p>{ price }</p>
-              <img src={ thumbnail } alt="foto" />
-            </div>
-          )) : <p>Nenhum produto foi encontrado</p>}
+          {done
+            ? products.map(({ id }) => <CardProduct key={ id } products={ products } />)
+            : <p>Nenhum produto foi encontrado</p>}
         </div>
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

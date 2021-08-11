@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
+import CardProduct from './CardProduct';
 
 export default class Categories extends Component {
   constructor(props) {
@@ -59,14 +60,12 @@ export default class Categories extends Component {
             </div>
           ))}
         </form>
-        {productsFromCategory.length !== 0 ? productsFromCategory
-          .map(({ title, price, thumbnail, id }) => (
-            <div key={ id } data-testid="product">
-              <h3>{ title }</h3>
-              <p>{ price }</p>
-              <img src={ thumbnail } alt="foto" />
-            </div>
-          )) : ''}
+        <div>
+          {productsFromCategory.length !== 0 ? productsFromCategory
+            .map(({ id }) => (
+              <CardProduct key={ id } products={ productsFromCategory } />
+            )) : ''}
+        </div>
       </div>
     );
   }
