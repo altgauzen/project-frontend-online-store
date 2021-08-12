@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import CardProduct from './CardProduct';
 
@@ -39,7 +40,7 @@ export default class Categories extends Component {
 
   render() {
     const { categories, loading, productsFromCategory } = this.state;
-    const { addToCart, cart } = this.props;
+    const { addToCart } = this.props;
     if (loading) return <h4>Loading</h4>;
     /* console.log(productsFromCategory); */
     /* console.log(this.props); */
@@ -71,3 +72,7 @@ export default class Categories extends Component {
     );
   }
 }
+
+Categories.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};

@@ -38,4 +38,5 @@ CardProduct.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
