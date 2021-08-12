@@ -28,8 +28,9 @@ export default class CardProduct extends Component {
   render() {
     const { products } = this.props;
     const { title, thumbnail, price, id } = products;
-    const { item } = this.state;
+    const { item, click } = this.state;
     console.log(item);
+    console.log(click);
     return (
       <div>
         <div data-testid="product">
