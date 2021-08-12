@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import CardProduct from './CardProduct';
 
@@ -41,6 +42,7 @@ export default class SearchBar extends Component {
 
   render() {
     const { products, searchText, done } = this.state;
+    const { addToCart } = this.props;
     // console.log(results);
     // if (done) return 'Nenhum produto foi encontrado';
     return (
@@ -70,6 +72,7 @@ export default class SearchBar extends Component {
               <CardProduct
                 key={ id }
                 products={ product }
+                addToCart={ addToCart }
               />))
             : <p>Nenhum produto foi encontrado</p>}
         </div>
@@ -80,3 +83,7 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
