@@ -18,7 +18,13 @@ export default class ProductDetails extends Component {
             </li>
           ))}
         </ul>
-        <Link to="/carrinho">Carrinho</Link>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => addToCart(location.state) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
