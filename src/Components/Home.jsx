@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import CartButton from './CartButton';
 import Categories from './Categories';
 import SearchBar from './SearchBar';
 
@@ -9,12 +9,7 @@ export default class Home extends Component {
       <div>
         <SearchBar />
         <Categories />
-        <Link
-          to="/carrinho"
-          data-testid="shopping-cart-button"
-        >
-          Carrinho
-        </Link>
+        <CartButton />
       </div>
     );
   }
