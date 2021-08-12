@@ -7,13 +7,19 @@ export default class CardProduct extends Component {
     const { products } = this.props;
     const { title, thumbnail, price, id } = products;
     return (
-      <Link to={ { pathname: `/product-details/${id}`, state: products } } data-testid="product-detail-link">
+      <div>
         <div data-testid="product">
           <h3>{ title }</h3>
           <p>{ price }</p>
           <img src={ thumbnail } alt="foto" />
         </div>
-      </Link>
+        <Link
+          to={ { pathname: `/product-details/${id}`, state: products } }
+          data-testid="product-detail-link"
+        >
+          Detalhes
+        </Link>
+      </div>
     );
   }
 }

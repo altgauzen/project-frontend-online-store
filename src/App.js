@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Cart from './pages/Cart';
-import DescribeItem from './pages/DescribeItem';
+import DescribeItem from './pages/ProductDetails';
 import Home from './Components/Home';
 
 export default class App extends React.Component {
