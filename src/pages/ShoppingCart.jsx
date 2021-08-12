@@ -7,6 +7,7 @@ export default class ShoppingCart extends Component {
     const { cart } = location;
     return (
       <div>
+        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         {cart.map((car) => (
           <div key={ car.id }>
             <p data-testid="shopping-cart-product-name">{car.title}</p>
