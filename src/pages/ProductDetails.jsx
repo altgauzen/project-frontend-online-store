@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import CartButton from '../Components/CartButton';
 
 export default class ProductDetails extends Component {
   render() {
-    const { location } = this.props;
+    const { location, addToCart, cart } = this.props;
     const { title, thumbnail, price, attributes } = location.state;
     return (
       <div>
@@ -18,7 +19,15 @@ export default class ProductDetails extends Component {
             </li>
           ))}
         </ul>
-        <Link to="/carrinho">Carrinho</Link>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => addToCart(location.state) }
+        >
+          Adicionar ao Carrinho
+        </button>
+        <Link to="/">Voltar</Link>
+        <CartButton cart={ cart } />
       </div>
     );
   }
@@ -39,4 +48,6 @@ ProductDetails.propTypes = {
       ),
     }),
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
