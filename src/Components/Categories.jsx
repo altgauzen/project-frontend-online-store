@@ -40,8 +40,8 @@ export default class Categories extends Component {
   render() {
     const { categories, loading, productsFromCategory } = this.state;
     if (loading) return <h4>Loading</h4>;
-    console.log(productsFromCategory);
-    console.log(this.props);
+    /* console.log(productsFromCategory); */
+    /* console.log(this.props); */
     return (
       <div>
         <form>
@@ -62,8 +62,8 @@ export default class Categories extends Component {
         </form>
         <div>
           {productsFromCategory.length !== 0 ? productsFromCategory
-            .map(({ id }) => (
-              <CardProduct key={ id } products={ productsFromCategory } />
+            .map((product, { id }) => (
+              <CardProduct key={ id } products={ product } />
             )) : ''}
         </div>
       </div>
