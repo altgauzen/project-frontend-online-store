@@ -17,8 +17,8 @@ export default class CardProduct extends Component {
     this.handleClick();
   }
 
-  async handleClick(event) {
-    const product = await getProductsFromCategoryAndQuery(event.target.id, '');
+  async handleClick() {
+    const product = await getProductsFromCategoryAndQuery();
     this.setState({
       item: product.results,
       click: true,
