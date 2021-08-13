@@ -28,6 +28,21 @@ export default class ProductDetails extends Component {
         </button>
         <Link to="/">Voltar</Link>
         <CartButton cart={ cart } />
+        <form>
+          <label htmlFor="input-name">
+            Nota:
+            <input type="number" className="input-name" min="1" max="5" required />
+          </label>
+          <label htmlFor="input-textArea">
+            Mensagem:
+            <input
+              className="input-textArea"
+              type="textArea"
+              data-testid="product-detail-evaluation"
+              placeholder="opcional"
+            />
+          </label>
+        </form>
       </div>
     );
   }
