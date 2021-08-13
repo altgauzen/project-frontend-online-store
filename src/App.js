@@ -37,7 +37,11 @@ export default class App extends React.Component {
             path="/"
             render={ () => <Home cart={ cart } addToCart={ this.addToCart } /> }
           />
-          <Route exact path="/carrinho" component={ ShoppingCart } />
+          <Route
+            exact
+            path="/carrinho"
+            component={ ShoppingCart }
+          />
           <Route
             exact
             path="/product-details/:id"
