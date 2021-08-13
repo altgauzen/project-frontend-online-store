@@ -1,78 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../services/api';
-import CardProduct from './CardProduct';
 
 export default class Categories extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: {},
-      productsFromCategory: [],
-      loading: true,
-    };
-    this.fetchCategories = this.fetchCategories.bind(this);
-    this.getCategoryId = this.getCategoryId.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
-  }
-
-  async getCategoryId(event) {
-    const filterCategoryId = await
-    api.getProductsFromCategoryAndQuery(event.target.value, '');
-    //  console.log(event.target.value);
-    //  console.log(filterCategoryId.results);
-    this.setState({
-      loading: false,
-      productsFromCategory: filterCategoryId.results,
-    });
-  }
-
-  async fetchCategories() {
-    const fetchApi = await api.getCategories();
-    this.setState({
-      loading: false,
-      categories: fetchApi,
-    });
-  }
-
   render() {
-    const { categories, loading, productsFromCategory } = this.state;
-    const { addToCart } = this.props;
-    if (loading) return <h4>Loading</h4>;
-    /* console.log(productsFromCategory); */
-    /* console.log(this.props); */
+    const { categories, handleClick } = this.props;
     return (
       <div>
         <form>
-          {categories.map(({ id, name }) => (
-            <div key={ id }>
-              <label htmlFor={ id } data-testid="category">
-                <input
-                  type="radio"
-                  name="category"
-                  id={ id }
-                  value={ id }
-                  onClickCapture={ this.getCategoryId }
-                />
-                { name }
-              </label>
-            </div>
-          ))}
+          { categories !== [] ? (
+            categories.map(({ id, name }) => (
+              <div key={ id }>
+                <label htmlFor={ id } data-testid="category">
+                  <input
+                    type="radio"
+                    name="category"
+                    id={ id }
+                    value={ id }
+                    onClick={ handleClick }
+                  />
+                  { name }
+                </label>
+              </div>
+            ))) : <p>Nenhum produto encontrado</p> }
         </form>
-        <div>
-          {productsFromCategory.length !== 0 ? productsFromCategory
-            .map((product, { id }) => (
-              <CardProduct key={ id } products={ product } addToCart={ addToCart } />
-            )) : ''}
-        </div>
       </div>
     );
   }
 }
 
 Categories.propTypes = {
-  addToCart: PropTypes.func.isRequired,
+  categories: PropTypes.objectOf.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
