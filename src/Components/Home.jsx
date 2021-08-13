@@ -34,7 +34,7 @@ export default class Home extends Component {
     const { searchText } = this.state;
     // const itemId = event.target.id;
     const filterCategoryId = await
-    api.getProductsFromCategoryAndQuery(event.target.value, searchText);
+    api.getProductsFromCategoryAndQuery(event.target.id, searchText);
     this.setState({
       products: filterCategoryId.results,
       state: true,

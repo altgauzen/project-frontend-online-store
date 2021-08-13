@@ -50,11 +50,9 @@ export default class SearchBar extends Component {
               />
             ))}
         </div>
-        <span data-testid="home-initial-message">
+        <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </span>
-        <br />
-        <br />
+        </h3>
       </div>
     );
   }
